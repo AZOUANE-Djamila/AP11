@@ -18,7 +18,8 @@ import dz.ibnrochd.master15.model.Patient;
 import dz.ibnrochd.master15.dao.RendezVousRepository;
 
 @SpringBootApplication
-public class Sb002Application implements CommandLineRunner {
+public class TP11Application //implements CommandLineRunner 
+{
 	
 	@Autowired
 	PatientRepository patientRepository;
@@ -38,13 +39,16 @@ public class Sb002Application implements CommandLineRunner {
 	private RendezVousRepository rendezVousRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(Sb002Application.class, args);
+		//SpringApplication.run(TP11Application.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
+	
+	
+
+	//	@Override
+	//public void run(String... args) throws Exception {
 	/* récupérer la liste de tous les patients puis afficher leurs noms*/
-		System.out.println("______________________________________________________________________________________________\n");
+	/*	System.out.println("______________________________________________________________________________________________\n");
 		System.out.println("Récupérer la liste de tous les patients puis afficher leurs noms");
 		patientRepository.findAll().forEach(pat -> System.out.println("Name: "+pat.getNom()+"\n"));
 		System.out.println("______________________________________________________________________________________________\n");
@@ -74,6 +78,6 @@ public class Sb002Application implements CommandLineRunner {
 		System.out.println("La liste des traitements préscits pour la consultation N°3 est:\n");
 		ligneConsultationRepository.findByConsultation(consult).forEach(l->System.out.println("- "+ l.getId_traitement().getNom() +"\n"));
 		//getLigneConsultations().forEach(l->System.out.println("- "+ l.getId_traitement().getNom() +"\n"));
-	}
+	}*/
 
 }
