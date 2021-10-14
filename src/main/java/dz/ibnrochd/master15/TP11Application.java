@@ -23,40 +23,9 @@ import dz.ibnrochd.master15.dao.RendezVousRepository;
 @SpringBootApplication
 public class TP11Application implements CommandLineRunner 
 {
-	
-	/*@Autowired
-	//PatientRepository patientRepository;
-	
-	//TODO : déclarer les autres repository de la même façon que PatientRepository
-	
-	@Autowired
-	private ConsultationRepository consultationRepository;
-	
-	@Autowired
-	private LigneConsultationRepository ligneConsultationRepository;
-	
-	@Autowired
-	private TraitementRepository traitementRepository;
-	
-	@Autowired
-	private RendezVousRepository rendezVousRepository;
-
-	
-	@Autowired
-    private PatientService patientService;
-	
-	@Autowired
-	private ConsultationService consultationService;
-	
-	@Autowired
-	private TraitementService traitementService;
-	
 	public static void main(String[] args) {
 		SpringApplication.run(TP11Application.class, args);
 	}
-*/
-	
-	
 		public void run(String... args) throws Exception {
 
 			
