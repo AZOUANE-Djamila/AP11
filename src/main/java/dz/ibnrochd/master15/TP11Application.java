@@ -59,7 +59,9 @@ public class TP11Application implements CommandLineRunner
 
 			@SuppressWarnings("deprecation")
 			Patient patientCréé = new Patient(111,"AZOUANE","Wassilla","f",new Date("28/12/1997"),"657747","Bejaia");
-			patientRepository.findAll().forEach(p->System.out.println(p.getNom()));
+			System.out.println(patientRepository.rechercheParNom("AZOUANE"));
+
+			
 	/* récupérer la liste de tous les patients puis afficher leurs noms*/
 	/*	System.out.println("______________________________________________________________________________________________\n");
 		System.out.println("Récupérer la liste de tous les patients puis afficher leurs noms");
