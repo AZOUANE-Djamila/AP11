@@ -7,18 +7,18 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import antlr.collections.List;
 import dz.ibnrochd.master15.dao.PatientRepository;
+import dz.ibnrochd.master15.business.ConsultationService;
+import dz.ibnrochd.master15.business.PatientService;
+import dz.ibnrochd.master15.business.TraitementService;
 import dz.ibnrochd.master15.dao.ConsultationRepository;
 import dz.ibnrochd.master15.dao.LigneConsultationRepository;
 import dz.ibnrochd.master15.dao.TraitementRepository;
-import dz.ibnrochd.master15.model.Consultation;
-import dz.ibnrochd.master15.model.LigneConsultation;
 import dz.ibnrochd.master15.model.Patient;
 import dz.ibnrochd.master15.dao.RendezVousRepository;
 
 @SpringBootApplication
-public class TP11Application //implements CommandLineRunner 
+public class TP11Application implements CommandLineRunner 
 {
 	
 	@Autowired
@@ -38,15 +38,28 @@ public class TP11Application //implements CommandLineRunner
 	@Autowired
 	private RendezVousRepository rendezVousRepository;
 
+	
+	@Autowired
+    private PatientService patientService;
+	
+	@Autowired
+	private ConsultationService consultationService;
+	
+	@Autowired
+	private TraitementService traitementService;
+	
+	
 	public static void main(String[] args) {
-		//SpringApplication.run(TP11Application.class, args);
+		SpringApplication.run(TP11Application.class, args);
 	}
 
 	
 	
+		public void run(String... args) throws Exception {
 
-	//	@Override
-	//public void run(String... args) throws Exception {
+			@SuppressWarnings("deprecation")
+			Patient patientCréé = new Patient(111,"AZOUANE","Wassilla","f",new Date("28/12/1997"),"657747","Bejaia");
+			patientRepository.findAll().forEach(p->System.out.println(p.getNom()));
 	/* récupérer la liste de tous les patients puis afficher leurs noms*/
 	/*	System.out.println("______________________________________________________________________________________________\n");
 		System.out.println("Récupérer la liste de tous les patients puis afficher leurs noms");
@@ -77,7 +90,7 @@ public class TP11Application //implements CommandLineRunner
 		// TODO : parcourir les lignes de la consultation trouvée et afficher les noms des médicaments
 		System.out.println("La liste des traitements préscits pour la consultation N°3 est:\n");
 		ligneConsultationRepository.findByConsultation(consult).forEach(l->System.out.println("- "+ l.getId_traitement().getNom() +"\n"));
-		//getLigneConsultations().forEach(l->System.out.println("- "+ l.getId_traitement().getNom() +"\n"));
-	}*/
+		//getLigneConsultations().forEach(l->System.out.println("- "+ l.getId_traitement().getNom() +"\n"));*/
+	}
 
 }

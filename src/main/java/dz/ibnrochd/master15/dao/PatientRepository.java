@@ -1,8 +1,8 @@
 package dz.ibnrochd.master15.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
 import dz.ibnrochd.master15.model.Patient;
 
 import java.util.List;
@@ -16,5 +16,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long>
 	// TODO ajouter la signature d'une méthode pour rechercher des patients par leurs noms (convention Spring Data)
 	//List<Patient> findByNom(String nom);
 	//List<Patient> findAll();
+	@Query("select p from Patient p where p.nom = ?1")
+	List<Patient> rechercheParNom(String  nom);
 	
 }
