@@ -11,12 +11,11 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Long> 
 {
 
-	List<Patient> findByNom(String string);
+	///List<Patient> findByNom(String string);
 
 	// TODO ajouter la signature d'une méthode pour rechercher des patients par leurs noms (convention Spring Data)
 	//List<Patient> findByNom(String nom);
 	//List<Patient> findAll();
-	@Query("select p from Patient p where p.nom = ?1")
-	List<Patient> rechercheParNom(String  nom);
-	
+	//@Query("select p from Patient p where p.nom = ?1")
+	//List<Patient> rechercheParPrenom(String  prenom);
 }

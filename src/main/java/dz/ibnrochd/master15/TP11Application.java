@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import dz.ibnrochd.master15.dao.PatientRepository;
 import dz.ibnrochd.master15.business.ConsultationService;
@@ -17,14 +19,15 @@ import dz.ibnrochd.master15.dao.TraitementRepository;
 import dz.ibnrochd.master15.model.Patient;
 import dz.ibnrochd.master15.dao.RendezVousRepository;
 
+
 @SpringBootApplication
 public class TP11Application implements CommandLineRunner 
 {
 	
-	@Autowired
-	PatientRepository patientRepository;
+	/*@Autowired
+	//PatientRepository patientRepository;
 	
-	// TODO : déclarer les autres repository de la même façon que PatientRepository
+	//TODO : déclarer les autres repository de la même façon que PatientRepository
 	
 	@Autowired
 	private ConsultationRepository consultationRepository;
@@ -48,18 +51,13 @@ public class TP11Application implements CommandLineRunner
 	@Autowired
 	private TraitementService traitementService;
 	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(TP11Application.class, args);
 	}
-
+*/
 	
 	
 		public void run(String... args) throws Exception {
-
-			@SuppressWarnings("deprecation")
-			Patient patientCréé = new Patient(111,"AZOUANE","Wassilla","f",new Date("28/12/1997"),"657747","Bejaia");
-			System.out.println(patientRepository.rechercheParNom("AZOUANE"));
 
 			
 	/* récupérer la liste de tous les patients puis afficher leurs noms*/
