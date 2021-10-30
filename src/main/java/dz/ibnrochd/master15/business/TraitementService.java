@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import dz.ibnrochd.master15.dao.TraitementRepository;
 import dz.ibnrochd.master15.model.Traitement;
 
@@ -13,11 +12,6 @@ public class TraitementService implements ITraitementService{
 
 	@Autowired
 	TraitementRepository traitementRepository;
-
-	@Override
-	public List<Traitement> listeDesTraitements() {
-		return traitementRepository.findAll();
-	}
 
 	@Override
 	public void creerTraitement(Traitement traitement) {
@@ -33,5 +27,13 @@ public class TraitementService implements ITraitementService{
 	public void supprimerTraitements(Traitement traitement) {
 		traitementRepository.delete(traitement);		
 	}
-	
+
+	public List<Traitement> findAllTraitements() {
+		
+		return traitementRepository.findAll();
+	}
+
+
+
+
 }

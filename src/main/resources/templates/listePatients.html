@@ -14,11 +14,22 @@
 
     <div class="container-fluid">
         <div class="row">
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+			<aside class="col-md-3 ml-sm-auto col-lg-3 menu-sidebar mt-4">
+				
+				<div class="menu-sidebar__content mt-4">
+				<div class="d-grid gap align-items-start">
+ 	 				<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    					<button  class="btn btn-dark active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Liste de patients</button>
+   	 					<button class="btn btn-white" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Liste de traitements</button>
+  					</div>
+				</div>
+     			</div>
+			</aside>
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-9 mt-4 pt-3 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                   <h1 class="h2">Liste des patients</h1>
                   <div>
-                      <button class="btn btn-primary"> Ajouter un patient</button>
+                      <a class="btn btn-primary" th:href="@{/patients/ajouter-patient}"> Ajouter un patient</a>
                   </div>
                 </div>
                
@@ -34,23 +45,24 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr th:each = "patients: ${patient}">
-                        <td th:text = "${name}"> </td>
+                      <tr th:each = "patient: ${patients}">
+                        <td th:text="${patient.nom}"> </td>
                         <td th:text = "${patient.prenom}">  </td>
-                        <td th:text = "${patient.sexe}">  </td>
-                        <td th:text = "${patient.date_naissance}">  </td>
+                        <td th:text = "${patient.sexe}"> ${(sexe=="M"? "Male" : "Female")} </td>
+                        <td th:text = "${patient.dateNaissance}">  </td>
                         <td th:text = "${patient.adresse}">  </td>
                         <td> 
                             <div class="btn-group" role="group">
                                 <div>
-                                    <button class="btn btn-grey" type="button">
+                                    <a class="btn btn-grey" type="button" th:href="@{/patients/edit/{id}(id=${patient.id})}">
                                         <i class="fas fa-user-edit text-dark"></i>
-                                    </button>
+                                    </a>
                                 </div>
                                 <div>
-                                    <button class="btn btn-grey" type="button">
+                                    <a class="btn btn-grey" type="button" th:href="@{/patients/delete/{id}(id=${patient.id})}">
                                         <i class="fas fa-user-times text-danger"></i>
-                                    </button>
+                                    </a>
+                                            
                                 </div>
                                 
                             </div>

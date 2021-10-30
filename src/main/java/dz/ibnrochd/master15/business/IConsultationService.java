@@ -12,6 +12,7 @@ import dz.ibnrochd.master15.model.Consultation;
 public interface IConsultationService {
 
 	List<Consultation> listeDesConsultations();
+	//List<LigneConsultation> listeDeLignesDeConsultationsByConsultations(Consultation c);
 	void creerConsultation(Consultation consultation);
 	void modifierConsultation(Consultation consultation);
 	void supprimerConsultations(Consultation consultation);

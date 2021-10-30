@@ -42,5 +42,11 @@ public class ConsultationService implements IConsultationService{
 	}
 
 	
+/*	@Override
+	public List<LigneConsultation> listeDeLignesDeConsultationsByConsultations(Consultation c) {
+		return consultationRepository.findLignesDeConsultationsByConsultation(c);
+	}*/
+
+	
 	
 }

@@ -18,19 +18,24 @@ public class PatientService implements IPatientService{
 	}
 	
 	@Override
-	public void creerPatient(Patient patient) {
-		patientRepository.save(patient);
+	public Patient creerPatient(Patient patient) {
+		return patientRepository.save(patient);
 	}
 	
 	@Override
-	public void modifierPatient(Patient patient) {
-		patientRepository.save(patient);
+	public Patient modifierPatient(Patient patient) {
+		return patientRepository.save(patient);
 	}
 
 	@Override
-	public void supprimerPatients(Patient patient) {
+	public void supprimerPatient(Patient patient) {
 		patientRepository.delete(patient);		
 	}
-	
-	
+
+	 @Override
+	 public Patient findPatientById(int id) {
+	     return patientRepository.getOne(id);
+	    }
+
+
 }

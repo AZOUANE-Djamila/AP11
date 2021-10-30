@@ -2,7 +2,7 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
-  <title>Modifier un patient</title>
+  <title>Ajouter un patient</title>
   <meta name="description" content="My Page Description"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -18,18 +18,18 @@
         <div class="row">
             <main role="main" class="col-md-5 col-lg-7 pt-3 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                  <h1 class="h2">Modifier un patient</h1>
+                  <h1 class="h2">Ajouter un patient</h1>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="container justify-content-center card">
                             <div class="card-body">
                                 <h6 class="card-title">Saisir les informations personnelles du patient:</h6>
-                                 <form class="form-group" id="contactForm" th:action="@{/patients/{id} (id=${patient.id})}" th:object="${patient}" method="POST">
+                                 <form class="form-group" id="contactForm" th:action="@{/patients}" th:object="${patient}" method="POST">
                                  	<div class="mt-4 mb-3 row">
                                     	<label class="col-sm-3 col-form-label">Nom</label>
                                     	<div class="col-sm-9">
-                                      		<input type="text" class="form-control" th:field="*{nom}" required />
+                                      		<input type="text" class="form-control" th:field="*{nom}" required/>
                                     	</div>
                                 	</div>       
       							
@@ -56,14 +56,7 @@
                                 	<div class="mb-3 row">
                                     	<label class="col-sm-3 col-form-label">Date de naissance</label>
 										<div class="col-sm-9">
-											<!--div class="input-group date" th:id="${'datetimepicker'}" data-date-formate="yyyy-mm-dd">
-                    							<input type="date" class="form-control" name="dateNaissance" th:value="{dateNaissance}"  th:id="${'datetimepicker'}" required>
-                    							<div class="input-group-addon input-group-prepend">
-                        							<span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                    							</div-->
-                    							
-                							
-                							<div class="input-group date" data-provide="datepicker">
+											<div class="input-group date" data-provide="datepicker">
     											<input type="date" 
     											class="form-control" 
     											name="dateNaissance" 
@@ -72,22 +65,22 @@
     											<div class="input-group-addon">
         											<span class="glyphicon glyphicon-th"></span>
     											</div>
-											</div>                
-                                    	</div>
+											</div>  
+                                		</div>
                                 	</div>
                                 	 <div class="mb-3 row">
                                     	<label class="col-sm-3 col-form-label">Numéro de téléphone</label>
 										<div class="col-sm-9">
-                                      		<input type="tel" class="form-control" name="numeroTelephone" th:field="*{numeroTelephone}" required />
+                                      		<input type="tel" class="form-control" namee="numeroTelephone" th:field="*{numeroTelephone}" required/>
                                     	</div>
                                 	</div> 
                                 	<div class="mb-3 row">
                                     	<label class="col-sm-3 col-form-label">Adresse</label>
 										<div class="col-sm-9">
-                                      		<input type="text" class="form-control" name="adresse" th:field="*{adresse}" required />
+                                      		<input type="text" class="form-control" th:field="*{adresse}" required/>
                                     	</div>
                                 	</div>
-                                	<button type="submit" value="update" class="btn btn-dark">Modifier</button>
+                                	<button type="submit" value="create" class="btn btn-dark">Créer</button>
                                 </form>   
                             </div>
                         </div>
@@ -124,21 +117,10 @@
          <script th:inline="javascript">
           $(document).off('.datepicker.data-api');
            $('.datepicker').datepicker({
-    		format: 'yyyy-mm-dd',
-});
-</script>
-     <script>
- $('.input-group.date').datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-     </script>
-       <script th:inline="javascript">
-          $(document).off('.datepicker.data-api');
-           $('.datepicker').datepicker({
     format: 'yyyy-mm-dd',
     startDate: '-3d'
 });
 </script>
+       
 </body>
 </html>

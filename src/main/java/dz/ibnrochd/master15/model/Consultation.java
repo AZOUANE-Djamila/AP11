@@ -1,6 +1,5 @@
 package dz.ibnrochd.master15.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,9 +20,6 @@ import javax.persistence.TemporalType;
 @Table(schema = "cabinet", name = "consultation")
 public class Consultation {
 
-	private static final long serialVersionUID = -3669998604878710274L;
-	
-	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -118,11 +114,5 @@ public class Consultation {
 		this.patient = patient;
 	}
 
-	public void forEach(Object object) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	
-	 ////////////////////////////
 }

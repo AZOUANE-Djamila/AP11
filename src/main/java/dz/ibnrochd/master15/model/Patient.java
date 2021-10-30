@@ -1,6 +1,5 @@
 package dz.ibnrochd.master15.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,16 +13,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(schema = "cabinet", name = "patient")
 public class Patient  {
 
-	//private static final long serialVersionUID = -3415388341943341473L;
-
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column(name = "nom", nullable = false, length = 255)
     private String nom;
@@ -34,8 +34,9 @@ public class Patient  {
     @Column(name = "sexe", nullable = false, length = 1)
     private String sexe;
 
-    @Column(name = "date_naissance", nullable = false)
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @Column(name = "date_naissance", nullable = false)
     private Date dateNaissance;
 
     @Column(name = "numero_telephone", nullable = false, length = 255)
@@ -55,9 +56,9 @@ public class Patient  {
     public Patient() {		
 	}
 
-	public Patient(long id, String nom, String prenom, String sexe, Date dateNaissance, String numeroTelephone,
+	public Patient(String nom, String prenom, String sexe, Date dateNaissance, String numeroTelephone,
 			String adresse) {
-		this.id = id;
+		
 		this.nom = nom;
 		this.prenom = prenom;
 		this.sexe = sexe;
@@ -67,15 +68,16 @@ public class Patient  {
 	}
 	
 	//////////////////////////////////////////////////////
-
-	public long getId() {
+	@NotNull
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	@NotNull
 	public String getNom() {
 		return nom;
 	}
@@ -84,6 +86,7 @@ public class Patient  {
 		this.nom = nom;
 	}
 
+	@NotNull
 	public String getPrenom() {
 		return prenom;
 	}
@@ -92,6 +95,7 @@ public class Patient  {
 		this.prenom = prenom;
 	}
 
+	@NotNull
 	public String getSexe() {
 		return sexe;
 	}
@@ -100,14 +104,19 @@ public class Patient  {
 		this.sexe = sexe;
 	}
 
+	@NotNull
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}
 
 	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
+
+		Date currentDate = new Date();
+		if (dateNaissance.before(currentDate))  this.dateNaissance = dateNaissance;
+		else this.dateNaissance = currentDate;
 	}
 
+	@NotNull
 	public String getNumeroTelephone() {
 		return numeroTelephone;
 	}
@@ -116,6 +125,7 @@ public class Patient  {
 		this.numeroTelephone = numeroTelephone;
 	}
 
+	@NotNull
 	public String getAdresse() {
 		return adresse;
 	}
@@ -140,5 +150,4 @@ public class Patient  {
 	public void setRendezVous(List<RendezVous> rendezVous) {
 		this.rendezVous = rendezVous;
 	}
-
 }

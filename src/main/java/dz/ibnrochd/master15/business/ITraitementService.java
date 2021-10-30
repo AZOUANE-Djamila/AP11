@@ -6,9 +6,8 @@ import dz.ibnrochd.master15.model.Traitement;
 
 public interface ITraitementService {
 
-	List<Traitement> listeDesTraitements();
+	List<Traitement> findAllTraitements();
 	void creerTraitement(Traitement traitement);
 	void modifierTraitement(Traitement traitement);
-	void supprimerTraitements(Traitement traitement);
-	
+	void supprimerTraitements(Traitement traitement);	
 }
