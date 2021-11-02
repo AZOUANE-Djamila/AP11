@@ -13,4 +13,5 @@ public interface LigneConsultationRepository extends JpaRepository<LigneConsulta
 {
 	List<LigneConsultation> findByConsultation(Consultation cons);
 
+
 }

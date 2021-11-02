@@ -17,7 +17,7 @@ public class LigneConsultation {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
 	 
     @ManyToOne()
@@ -40,7 +40,7 @@ public class LigneConsultation {
 	 public LigneConsultation() {
 			super();		
 		}
-	public LigneConsultation(long id, Consultation consultation, Traitement traitement, String posologie,
+	public LigneConsultation(int id, Consultation consultation, Traitement traitement, String posologie,
 			String unite_temps, String quantite) {
 		super();
 		this.id = id;
@@ -53,13 +53,13 @@ public class LigneConsultation {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -111,12 +111,14 @@ public class LigneConsultation {
 	public void setQuantite(String quantite) {
 		this.quantite = quantite;
 	}
-	public Consultation getConsultations() {
+	public Consultation getConsultation() {
 		return consultation;
 	}
-	public void setConsultations(Consultation consultations) {
-		this.consultation = consultations;
+	public void setConsultation(Consultation consultation) {
+		this.consultation = consultation;
 	}
+	
+	
 	 
 	 
 }

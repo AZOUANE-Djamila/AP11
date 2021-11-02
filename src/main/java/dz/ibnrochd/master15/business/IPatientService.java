@@ -8,7 +8,7 @@ public interface IPatientService {
 	Patient modifierPatient(Patient patient);
 	void supprimerPatient(Patient patient);
 	List<Patient> findAllPatients();
-	Patient findPatientById(int id);
+	Patient findPatient(int id);
 	Patient creerPatient(Patient patient);
 	
 }

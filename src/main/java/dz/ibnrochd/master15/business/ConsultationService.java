@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dz.ibnrochd.master15.dao.ConsultationRepository;
+import dz.ibnrochd.master15.dao.LigneConsultationRepository;
 import dz.ibnrochd.master15.model.Consultation;
+import dz.ibnrochd.master15.model.Patient;
 
 
 @Service
@@ -14,6 +16,9 @@ public class ConsultationService implements IConsultationService{
 
 	@Autowired
 	ConsultationRepository consultationRepository;
+	
+	@Autowired
+	LigneConsultationRepository ligneConsultationRepository;
 
 	
 	public ConsultationService(ConsultationRepository consultationRepository) {
@@ -36,17 +41,18 @@ public class ConsultationService implements IConsultationService{
 		consultationRepository.save(consultation);
 	}
 
-	@Override
+	@Override	
 	public void supprimerConsultations(Consultation consultation) {
 		consultationRepository.delete(consultation);		
 	}
 
-	
-/*	@Override
-	public List<LigneConsultation> listeDeLignesDeConsultationsByConsultations(Consultation c) {
-		return consultationRepository.findLignesDeConsultationsByConsultation(c);
-	}*/
+	public List<Consultation> listeConsultationsParPatient(Patient p) {
 
-	
-	
+		return consultationRepository.findConsultationsByPatient(p);
+	}
+
+	public Consultation trouverConsultationById(int idC) {
+		return consultationRepository.findConsultationById(idC);
+	}
+
 }

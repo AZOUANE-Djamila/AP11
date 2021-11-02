@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import dz.ibnrochd.master15.model.Consultation;
+import dz.ibnrochd.master15.model.Patient;
 
 @Repository
 public interface ConsultationRepository extends JpaRepository<Consultation, Integer> {
@@ -14,8 +15,10 @@ public interface ConsultationRepository extends JpaRepository<Consultation, Inte
 	
 	@Query("select c from Consultation c where c.motif = ?1")
 	List<Consultation> rechercheParMotif(String  motif);
+	List<Consultation> findConsultationsByPatient(Patient p);
+	Consultation findConsultationById(int id);
 
-	//List<LigneConsultation> findLignesDeConsultationsByConsultation(Consultation c);
+	
 }
 
 

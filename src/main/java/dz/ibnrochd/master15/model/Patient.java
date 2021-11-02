@@ -3,7 +3,6 @@ package dz.ibnrochd.master15.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,7 +45,7 @@ public class Patient  {
     private String adresse;
         
     @OneToMany()//(mappedBy = "patients")
-    private List<Consultation> consultations = new ArrayList<>();
+    private List<Consultation> consultations;
     
     @OneToMany()//(mappedBy = "patients")
     private List<RendezVous> rendezVous = new ArrayList<>();
