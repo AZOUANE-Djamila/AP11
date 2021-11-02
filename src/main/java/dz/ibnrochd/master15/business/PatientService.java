@@ -12,24 +12,37 @@ public class PatientService implements IPatientService{
 	@Autowired
 	PatientRepository patientRepository;
 	
-	
+	/**
+	 * Récupérer tous les patients
+	 */
 	public List<Patient> findAllPatients() {
 		return patientRepository.findAll();
 	}
 	
+	/**
+	 * Créér un patient
+	 */
 	public Patient creerPatient(Patient patient) {
 		return patientRepository.save(patient);
 	}
 	
+	/**
+	 * Modifier un patient
+	 */
 	public Patient modifierPatient(Patient patient) {
 		return patientRepository.save(patient);
 	}
 
+	/**
+	 * Supprimer un patient
+	 */
 	public void supprimerPatient(Patient patient) {
 		patientRepository.delete(patient);		
 	}
 
-
+	/***
+	 * Trouver un patient
+	 */
 	 public Patient findPatient(int id) {
 	     return patientRepository.findById(id);
 	    }

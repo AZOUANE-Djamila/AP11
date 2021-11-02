@@ -42,7 +42,11 @@ public class TraitementService implements ITraitementService{
 		
 		return traitementRepository.findAll();
 	}
-
+	
+	/**
+	 * Lister les traitements par consultation
+	 * J'ai récupéré les traitement grace aux lignes de consultation pour chaque consultation
+	 */
 	public List<Traitement> listeTraitementsParConsultation(Consultation c) {
 		List<Traitement> lt = new ArrayList<>();
 		lCRepository.findByConsultation(c).forEach(lc->{

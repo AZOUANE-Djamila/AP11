@@ -26,31 +26,48 @@ public class ConsultationService implements IConsultationService{
 		this.consultationRepository = consultationRepository;
 	}
 	
-	@Override
+	/**
+	 * Récupérer la liste de toutes les consultations
+	 */
 	public List<Consultation> listeDesConsultations() {
 		return consultationRepository.findAll();
 	}
 
-	@Override
+	/**
+	 * Créer une consultation
+	 */
 	public void creerConsultation(Consultation consultation) {
 		consultationRepository.save(consultation);		
 	}
 
-	@Override
+	/**
+	 * Modifier une consultation en possédant l'objet
+	 */
 	public void modifierConsultation(Consultation consultation) {
 		consultationRepository.save(consultation);
 	}
 
-	@Override	
+	/**
+	 * Supprimer une consultation donnée	
+	 */
 	public void supprimerConsultations(Consultation consultation) {
 		consultationRepository.delete(consultation);		
 	}
 
+
+	/**
+	 * Récupérer la liste des consultations par patients
+	 */
 	public List<Consultation> listeConsultationsParPatient(Patient p) {
 
 		return consultationRepository.findConsultationsByPatient(p);
 	}
 
+	/**
+	 * 
+	 * @param idC le id unique de la consultation à rechercher
+	 * @return La consultation qui posséde le id en parametre
+	 */
 	public Consultation trouverConsultationById(int idC) {
 		return consultationRepository.findConsultationById(idC);
 	}

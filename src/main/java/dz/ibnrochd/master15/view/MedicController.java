@@ -66,7 +66,7 @@ public class MedicController {
 		return "createPatient";
 	}
 	
-
+	
 	 @PostMapping("/patients/{id}")
 	 public String updatePatient(@PathVariable int id, 
 		@ModelAttribute("patient") Patient patient, Model model) {
@@ -124,9 +124,7 @@ public class MedicController {
 		List<Consultation> listeC = iconsultationService.listeConsultationsParPatient(patient);
 		
 		List<Traitement> t = new ArrayList<>();
-		//listeC.forEach(l->{
-		//	t.addAll(itraitementService.listeTraitementsParConsultation(l));
-			//});
+
 		for(Consultation c : listeC) {
 			t.addAll(itraitementService.listeTraitementsParConsultation(c));
 		}
@@ -135,6 +133,7 @@ public class MedicController {
 		return "listconsultationsPatient";
 	}
 	
+	  //Erreurs
 	   @GetMapping("/error")
 	    public String handleError(HttpServletRequest request) {
 	        String errorPage = "error"; // default
