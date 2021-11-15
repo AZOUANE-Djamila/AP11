@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +52,7 @@ public class MedicController {
 	            dateFormat, true));
 	}
 	//Handler methods
+	
 	@RequestMapping(value = { "/patients" }, method = RequestMethod.GET)
 	public String getpatients(Model model) {
 		model.addAttribute("patients", ipatientService.findAllPatients());
@@ -70,31 +72,23 @@ public class MedicController {
 	 @PostMapping("/patients/{id}")
 	 public String updatePatient(@PathVariable int id, 
 		@ModelAttribute("patient") Patient patient, Model model) {
-	  Patient existantPatient = ipatientService.findPatient(id);
-	   existantPatient.setId(id);
-	   existantPatient.setNom(patient.getNom());
-	   existantPatient.setPrenom(patient.getPrenom());
-	   existantPatient.setDateNaissance(patient.getDateNaissance());
-	   existantPatient.setSexe(patient.getSexe());
-	   existantPatient.setNumeroTelephone(patient.getNumeroTelephone()); 
-	   existantPatient.setAdresse(patient.getAdresse()); 
+ 
 	   //if(existantPatient.getId() > 0) {
-		   ipatientService.modifierPatient(existantPatient);
+		   ipatientService.modifierPatient(id,patient);
 			return "redirect:/patients";
 	 }
 	 
 	 @GetMapping("/patients/edit/{id}")
-	 public String getpatient(@PathVariable (value = "id") int id, Model model) {
-		 	Patient patient = ipatientService.findPatient(id);
-	        model.addAttribute("patient",patient);
+	 public String getpatient(@PathVariable (value = "id") int id,Model model,@ModelAttribute("patient") Patient p) {
+		 
+	        ipatientService.modifierPatient(id, p);
 			return "edit-patient";
 	    }
 	
 	     
 	 @GetMapping("/patients/delete/{id}")
 	 public String deletePatient(@PathVariable("id") int id) {
-	     Patient patient = ipatientService.findPatient(id);//.orElseThrow(() -> new IllegalArgumentException("Invalid patient Id:" + id));
-	     ipatientService.supprimerPatient(patient);
+	     ipatientService.supprimerPatient(id);
 	     return "redirect:/patients";
 	 }
 	
@@ -118,10 +112,7 @@ public class MedicController {
 	@RequestMapping(value = { "patients/{id}/consultations" }, method = RequestMethod.GET)
 	public String listConsultationsPatient(Model model,@PathVariable("id") int id) {
 	
-		Patient patient= ipatientService.findPatient(id);
-		
-		
-		List<Consultation> listeC = iconsultationService.listeConsultationsParPatient(patient);
+		List<Consultation> listeC = iconsultationService.listeConsultationsParPatient(ipatientService.findPatient(id));
 		
 		List<Traitement> t = new ArrayList<>();
 

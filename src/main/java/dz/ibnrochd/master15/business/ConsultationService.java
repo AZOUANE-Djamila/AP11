@@ -1,6 +1,7 @@
 package dz.ibnrochd.master15.business;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,20 +57,17 @@ public class ConsultationService implements IConsultationService{
 
 
 	/**
-	 * Récupérer la liste des consultations par patients
-	 */
-	public List<Consultation> listeConsultationsParPatient(Patient p) {
-
-		return consultationRepository.findConsultationsByPatient(p);
-	}
-
-	/**
 	 * 
 	 * @param idC le id unique de la consultation à rechercher
 	 * @return La consultation qui posséde le id en parametre
 	 */
 	public Consultation trouverConsultationById(int idC) {
 		return consultationRepository.findConsultationById(idC);
+	}
+
+	@Override
+	public List<Consultation> listeConsultationsParPatient(Patient patient) {
+		return consultationRepository.findByPatient(patient);
 	}
 
 }
