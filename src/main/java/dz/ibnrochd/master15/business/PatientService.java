@@ -30,6 +30,13 @@ public class PatientService implements IPatientService{
 	 * Modifier un patient
 	 */
 	public Patient modifierPatient(Patient patient) {
+		//patient.setId(id);
+		patient.setNom(patient.getNom());
+		patient.setPrenom(patient.getPrenom());
+		patient.setDateNaissance(patient.getDateNaissance());
+		patient.setSexe(patient.getSexe());
+		patient.setNumeroTelephone(patient.getNumeroTelephone()); 
+		patient.setAdresse(patient.getAdresse()); 
 		return patientRepository.save(patient);
 	}
 

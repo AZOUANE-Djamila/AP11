@@ -1,5 +1,7 @@
 package dz.ibnrochd.master15.model;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -148,5 +150,13 @@ public class Patient  {
 
 	public void setRendezVous(List<RendezVous> rendezVous) {
 		this.rendezVous = rendezVous;
+	}
+	
+	public void getAge(Date datenaiss) {
+		//Period period = Period.between(datenaiss.getYear(), LocalDate.now());
+		
+		int daysDiff = (date1.getTime() - date2.getTime()) / MILLIS_PER_DAY;
+
+
 	}
 }

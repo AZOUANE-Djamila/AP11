@@ -71,13 +71,7 @@ public class MedicController {
 	 public String updatePatient(@PathVariable int id, 
 		@ModelAttribute("patient") Patient patient, Model model) {
 	  Patient existantPatient = ipatientService.findPatient(id);
-	   existantPatient.setId(id);
-	   existantPatient.setNom(patient.getNom());
-	   existantPatient.setPrenom(patient.getPrenom());
-	   existantPatient.setDateNaissance(patient.getDateNaissance());
-	   existantPatient.setSexe(patient.getSexe());
-	   existantPatient.setNumeroTelephone(patient.getNumeroTelephone()); 
-	   existantPatient.setAdresse(patient.getAdresse()); 
+	   
 	   //if(existantPatient.getId() > 0) {
 		   ipatientService.modifierPatient(existantPatient);
 			return "redirect:/patients";
