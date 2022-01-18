@@ -125,7 +125,7 @@ public class MedicController {
 	}
 	
 	  //Erreurs
-	   @GetMapping("/error")
+	  /* @GetMapping("/error")
 	    public String handleError(HttpServletRequest request) {
 	        String errorPage = "error"; // default
 	         
@@ -155,6 +155,6 @@ public class MedicController {
 	    public String getErrorPath() {
 	        return "/error";
 	    }
-
+*/
 }
 

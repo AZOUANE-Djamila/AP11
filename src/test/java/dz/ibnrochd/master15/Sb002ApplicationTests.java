@@ -7,12 +7,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import dz.ibnrochd.master15.TP11Application;
 
-@RunWith(SpringRunner.class)
+///@RunWith(SpringRunner.class)
 @SpringBootTest(classes = TP11Application.class)
 class Sb002ApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+	
 }
