@@ -1,4 +1,4 @@
 FROM openjdk:8
-VOLUME /tmp ADD AP20-21-0.0.1-SNAPSHOT.jar app.jar 
+VOLUME /tmp ADD m15-0.0.1-SNAPSHOT.jar app.jar 
 RUN bash -c 'touch /app.jar’ 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"] 

@@ -63,22 +63,35 @@
 		</dependency>
 	</dependencies>
 	<build>
-	<plugins>
-		<plugin>
-  			<groupId>com.spotify</groupId> 
-  			<version>1.0.0</version>
-  			<artifactId>docker-maven-plugin</artifactId> 
-  			<configuration>
-    			<imageName>${project.artifactId}</imageName>
-    			<dockerDirectory>src/main/docker</dockerDirectory>
-    			<resources>
-       				<resource>
-          				<directory>${project.build.directory}</directory>
-          				<include>${project.build.finalName}.jar</include>
-       				</resource>
-    			</resources>
-  			</configuration>
-		</plugin>	
-	</plugins>
+		<plugins>
+			<plugin>
+        		<groupId>com.spotify</groupId>
+            	<artifactId>docker-maven-plugin</artifactId>
+            	 <version>1.2.2</version>
+  				<executions>
+    				<execution>
+      					<id>default</id>
+      					<goals>
+        					<goal>build</goal>
+        					<goal>push</goal>
+      					</goals>
+    				</execution>
+  				</executions>
+        		<configuration>
+					<imageName>${project.artifactId}</imageName>
+    				<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+       					<resource>
+          					<directory>${project.build.directory}</directory>
+          					<include>${project.build.finalName}.jar</include>
+       					</resource>
+    				</resources>
+        		</configuration>
+        	</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 </project>
