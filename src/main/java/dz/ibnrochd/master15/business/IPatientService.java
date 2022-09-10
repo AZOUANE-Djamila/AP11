@@ -1,6 +1,9 @@
 package dz.ibnrochd.master15.business;
 
 import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
 import dz.ibnrochd.master15.model.Patient;
 
 public interface IPatientService {

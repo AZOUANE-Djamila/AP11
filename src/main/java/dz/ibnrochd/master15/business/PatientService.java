@@ -2,7 +2,11 @@ package dz.ibnrochd.master15.business;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import dz.ibnrochd.master15.dao.PatientRepository;
 import dz.ibnrochd.master15.model.Patient;
 
@@ -27,7 +31,9 @@ public class PatientService implements IPatientService{
 			patientRepository.save(patient);
 			
 		}else {
-			throw new IllegalArgumentException("Le patient doit avoir plus de 18 ans. Il a "+patient.getAge()+" ans");
+			 throw new ResponseStatusException( 
+		    		  HttpStatus.NOT_FOUND, "Le patient ne doit pas avoir moinss de 18 ans." 
+		    		); 
 		}
 	}
 	
@@ -38,7 +44,11 @@ public class PatientService implements IPatientService{
 		//patient.setId(id);
 		
 		if (patient.getAge() < 18) {
-		      throw new IllegalArgumentException("Le patient doit avoir plus de 18 ans. Il a "+patient.getAge()+" ans");
+		      //throw new IllegalArgumentException("Le patient doit avoir plus de 18 ans. Il a "+patient.getAge()+" ans");
+
+		      throw new ResponseStatusException( 
+		    		  HttpStatus.NOT_FOUND, "Le patient ne doit pas avoir moinss de 18 ans." 
+		    		); 
 		}
 		 else {
 			 	patient.setNom(patient.getNom());
@@ -50,6 +60,7 @@ public class PatientService implements IPatientService{
 		 
 			  patientRepository.save(patient);
 			 }
+		
 	}
 
 	/**

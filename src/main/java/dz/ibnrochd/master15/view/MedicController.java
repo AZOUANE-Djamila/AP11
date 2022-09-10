@@ -52,7 +52,7 @@ public class MedicController {
 	            dateFormat, true));
 	}
 	//Handler methods
-	@RequestMapping(value = { "/patients" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String getpatients(Model model) {
 		model.addAttribute("patients", ipatientService.findAllPatients());
 		return "listePatients";
@@ -68,26 +68,27 @@ public class MedicController {
 	}
 	
 	
-	 @PostMapping("/patients/{id}")
-	 public ResponseEntity<Object> updatePatient(@PathVariable int id, 
+	 @PostMapping("/patients/edit/{id}")
+	 public void updatePatient(@PathVariable int id, 
 		@ModelAttribute("patient") Patient patient, Model model) {
 		model.addAttribute("patient",patient);
 		try {
-		ipatientService.modifierPatient(patient); }
+			ipatientService.modifierPatient(patient); 
+		}
 		catch (Exception e) {
-			 if(e instanceof IllegalArgumentException) return new ResponseEntity<>("",HttpStatus.BAD_REQUEST);
+			 if(e instanceof IllegalArgumentException) 
+				  new ResponseEntity<>("",HttpStatus.BAD_REQUEST);
 			 else {                
 
 	            	System.out.println(e);
-	            	return ResponseEntity.ok().body("/error");
+	            	 ResponseEntity.ok().body("/error");
 	   					 
 	            }
-		}//return "redirect:/patients";
-		return null;
+		}//return "redirect:/";
 			
 	 }
 	 
-	 @GetMapping("/patients/edit/{id}")
+	 @GetMapping("/patients/{id}")
 	 public String getpatient(@PathVariable (value = "id") int id, Model model) {
 		 	Patient patient = ipatientService.findPatient(id);
 		 	
@@ -102,14 +103,14 @@ public class MedicController {
 	     Patient patient = ipatientService.findPatient(id);//.orElseThrow(() -> new IllegalArgumentException("Invalid patient Id:" + id));
 	     
 	     ipatientService.supprimerPatient(patient);
-	     return "redirect:/patients";
+	     return "redirect:/";
 	 }
 	
 
-	@RequestMapping(value = { "/patients" },method = RequestMethod.POST)
+	@RequestMapping(value = { "/" },method = RequestMethod.POST)
 	public String savePatient(Model model,@ModelAttribute("patient") Patient patient) {	
 			 ipatientService.creerPatient(patient);
-			 return "redirect:/patients";
+			 return "redirect:/";
 		
 	}
 
@@ -141,7 +142,7 @@ public class MedicController {
 	}
 	
 	  //Erreurs
-	  /* @GetMapping("/error")
+	  /* =@GetMapping("/error")
 	    public String handleError(HttpServletRequest request) {
 	        String errorPage = "error"; // default
 	         
