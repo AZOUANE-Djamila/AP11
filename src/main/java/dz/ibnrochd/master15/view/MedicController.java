@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -68,19 +69,30 @@ public class MedicController {
 	
 	
 	 @PostMapping("/patients/{id}")
-	 public String updatePatient(@PathVariable int id, 
+	 public ResponseEntity<Object> updatePatient(@PathVariable int id, 
 		@ModelAttribute("patient") Patient patient, Model model) {
-	  Patient existantPatient = ipatientService.findPatient(id);
-	   
-	   //if(existantPatient.getId() > 0) {
-		   ipatientService.modifierPatient(existantPatient);
-			return "redirect:/patients";
+		model.addAttribute("patient",patient);
+		try {
+		ipatientService.modifierPatient(patient); }
+		catch (Exception e) {
+			 if(e instanceof IllegalArgumentException) return new ResponseEntity<>("",HttpStatus.BAD_REQUEST);
+			 else {                
+
+	            	System.out.println(e);
+	            	return ResponseEntity.ok().body("/error");
+	   					 
+	            }
+		}//return "redirect:/patients";
+		return null;
+			
 	 }
 	 
 	 @GetMapping("/patients/edit/{id}")
 	 public String getpatient(@PathVariable (value = "id") int id, Model model) {
 		 	Patient patient = ipatientService.findPatient(id);
+		 	
 	        model.addAttribute("patient",patient);
+	        
 			return "edit-patient";
 	    }
 	
@@ -88,6 +100,7 @@ public class MedicController {
 	 @GetMapping("/patients/delete/{id}")
 	 public String deletePatient(@PathVariable("id") int id) {
 	     Patient patient = ipatientService.findPatient(id);//.orElseThrow(() -> new IllegalArgumentException("Invalid patient Id:" + id));
+	     
 	     ipatientService.supprimerPatient(patient);
 	     return "redirect:/patients";
 	 }
@@ -128,7 +141,7 @@ public class MedicController {
 	}
 	
 	  //Erreurs
-	   @GetMapping("/error")
+	  /* @GetMapping("/error")
 	    public String handleError(HttpServletRequest request) {
 	        String errorPage = "error"; // default
 	         
@@ -154,7 +167,7 @@ public class MedicController {
 	         
 	        return errorPage;
 	    }
-	     
+	     */
 	    public String getErrorPath() {
 	        return "/error";
 	    }

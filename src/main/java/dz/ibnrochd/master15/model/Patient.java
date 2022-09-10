@@ -57,9 +57,9 @@ public class Patient  {
     public Patient() {		
 	}
 
-	public Patient(String nom, String prenom, String sexe, Date dateNaissance, String numeroTelephone,
+	public Patient(int id,String nom, String prenom, String sexe, Date dateNaissance, String numeroTelephone,
 			String adresse) {
-		
+		setId(id);
 		this.nom = nom;
 		this.prenom = prenom;
 		this.sexe = sexe;
@@ -69,7 +69,7 @@ public class Patient  {
 	}
 	
 	//////////////////////////////////////////////////////
-	@NotNull
+	//@NotNull
 	public int getId() {
 		return id;
 	}
@@ -78,7 +78,7 @@ public class Patient  {
 		this.id = id;
 	}
 	
-	@NotNull
+	//@NotNull
 	public String getNom() {
 		return nom;
 	}
@@ -87,7 +87,7 @@ public class Patient  {
 		this.nom = nom;
 	}
 
-	@NotNull
+	//@NotNull
 	public String getPrenom() {
 		return prenom;
 	}
@@ -96,7 +96,7 @@ public class Patient  {
 		this.prenom = prenom;
 	}
 
-	@NotNull
+	//@NotNull
 	public String getSexe() {
 		return sexe;
 	}
@@ -105,7 +105,7 @@ public class Patient  {
 		this.sexe = sexe;
 	}
 
-	@NotNull
+	
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}
@@ -117,7 +117,7 @@ public class Patient  {
 		else this.dateNaissance = currentDate;
 	}
 
-	@NotNull
+	//@NotNull
 	public String getNumeroTelephone() {
 		return numeroTelephone;
 	}
@@ -126,7 +126,7 @@ public class Patient  {
 		this.numeroTelephone = numeroTelephone;
 	}
 
-	@NotNull
+	//@NotNull
 	public String getAdresse() {
 		return adresse;
 	}
@@ -152,10 +152,10 @@ public class Patient  {
 		this.rendezVous = rendezVous;
 	}
 	
-	public void getAge(Date datenaiss) {
-		//Period period = Period.between(datenaiss.getYear(), LocalDate.now());
+	public int getAge() {
 		
-		int daysDiff = (date1.getTime() - date2.getTime()) / MILLIS_PER_DAY;
+		Date now= new Date();
+		return (now.getYear() - this.getDateNaissance().getYear());
 
 
 	}

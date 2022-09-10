@@ -5,10 +5,10 @@ import dz.ibnrochd.master15.model.Patient;
 
 public interface IPatientService {
 	
-	Patient modifierPatient(Patient patient);
+	void modifierPatient(Patient patient);
 	void supprimerPatient(Patient patient);
 	List<Patient> findAllPatients();
 	Patient findPatient(int id);
-	Patient creerPatient(Patient patient);
+	void creerPatient(Patient patient);
 	
 }

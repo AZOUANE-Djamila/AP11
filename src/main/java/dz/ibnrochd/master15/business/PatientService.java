@@ -22,22 +22,34 @@ public class PatientService implements IPatientService{
 	/**
 	 * Créér un patient
 	 */
-	public Patient creerPatient(Patient patient) {
-		return patientRepository.save(patient);
+	public void creerPatient(Patient patient) {
+		if (patient.getAge()>18) {
+			patientRepository.save(patient);
+			
+		}else {
+			throw new IllegalArgumentException("Le patient doit avoir plus de 18 ans. Il a "+patient.getAge()+" ans");
+		}
 	}
 	
 	/**
 	 * Modifier un patient
 	 */
-	public Patient modifierPatient(Patient patient) {
+	public void modifierPatient(Patient patient) {
 		//patient.setId(id);
-		patient.setNom(patient.getNom());
-		patient.setPrenom(patient.getPrenom());
-		patient.setDateNaissance(patient.getDateNaissance());
-		patient.setSexe(patient.getSexe());
-		patient.setNumeroTelephone(patient.getNumeroTelephone()); 
-		patient.setAdresse(patient.getAdresse()); 
-		return patientRepository.save(patient);
+		
+		if (patient.getAge() < 18) {
+		      throw new IllegalArgumentException("Le patient doit avoir plus de 18 ans. Il a "+patient.getAge()+" ans");
+		}
+		 else {
+			 	patient.setNom(patient.getNom());
+				patient.setPrenom(patient.getPrenom());
+				patient.setDateNaissance(patient.getDateNaissance());
+				patient.setSexe(patient.getSexe());
+				patient.setNumeroTelephone(patient.getNumeroTelephone()); 
+				patient.setAdresse(patient.getAdresse()); 
+		 
+			  patientRepository.save(patient);
+			 }
 	}
 
 	/**
